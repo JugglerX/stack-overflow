@@ -1,0 +1,28 @@
+
+
+<%= link_to 'New Question', new_question_path, :class => "btn btn-primary pull-right", :style => "margin-top: 16px;" %>
+
+<h1>All Questions</h1>
+
+<% @questions.each do |question_item| %>
+<div class="media question">
+  <div class="pull-left">
+    X votes <br>
+    X answers <br>
+    X views <br>
+  </div>
+  <div class="media-body">
+    <h5 class="media-heading"><%= question_item.title %></h5>
+    <p><%= question_item.content %></p>
+
+    <div class="btn-group btn-group-sm">
+      <%= link_to "Show", question_path(question_item), :class => "btn  btn-default", :id => "my-id" %>
+      <%= link_to "Edit", edit_question_path(question_item), :class => "btn btn-default", :id => "my-id" %>
+      <%= link_to'Delete', question_path(question_item), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-default", :id => "my-id" %>
+    </div>
+
+  </div>
+</div>
+<% end %>
+
+
