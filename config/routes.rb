@@ -1,12 +1,26 @@
 Rails.application.routes.draw do
 
+  get 'sessions/new'
+
   root 'questions#index'
 
   # get 'questions', to: 'questions#index'
+  get    'signup'  => 'users#new'
+  get    'login'   => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  delete 'logout'  => 'sessions#destroy'
+
+  resources :users
+
+  post   'votes'   => 'votes#create'
 
   resources :questions do
     resources :answers
   end
+
+
+
+
 
 
 

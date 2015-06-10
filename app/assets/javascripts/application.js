@@ -14,3 +14,15 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+$(document).ready (function() {
+
+  // bind on click to vote up button
+  $(".question").on("ajax:success", (e, data, status, xhr), function(){
+    $(this).append(xhr.responseText)
+  });
+
+});
+
+

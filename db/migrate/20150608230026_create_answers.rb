@@ -4,6 +4,8 @@ class CreateAnswers < ActiveRecord::Migration
       t.string :title
       t.text :content
       t.references :question
+      t.integer :score, default: 0
+
 
       t.timestamps
     end

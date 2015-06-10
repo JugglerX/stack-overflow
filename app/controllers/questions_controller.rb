@@ -5,12 +5,13 @@ class QuestionsController < ApplicationController
   # GET /questions.json
   def index
     @questions = Question.all.order(created_at: :desc)
+
   end
 
   # GET /questions/1
   # GET /questions/1.json
   def show
-    @answers = @question.answers.all
+    @answers = @question.answers.all.order(score: :desc)
   end
 
   # GET /questions/new
@@ -26,15 +27,11 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
     @question = Question.new(question_params)
-
-    respond_to do |format|
-      if @question.save
-        format.html { redirect_to @question, notice: 'Question was successfully created.' }
-        format.json { render :show, status: :created, location: @question }
-      else
-        format.html { render :new }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
-      end
+    if @question.save
+      p @question
+      redirect_to @question, notice: 'Question was successfully created.'
+    else
+      render :new
     end
   end
 

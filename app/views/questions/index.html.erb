@@ -1,15 +1,19 @@
 
+<div class="question-wrapper">
 
 <%= link_to 'New Question', new_question_path, :class => "btn btn-primary pull-right", :style => "margin-top: 16px;" %>
 
 <h1>All Questions</h1>
 
 <% @questions.each do |question_item| %>
-<div class="media question">
+<div id="<%= question_item.id %>"class="media question">
   <div class="pull-left">
-    X votes <br>
-    X answers <br>
-    X views <br>
+
+
+    <%= link_to "Vote Up", votes_path(vote: {vote_value: 1, votable_type: "Question", votable_id: question_item.id}), :class => "btn btn-xs btn-primary vote-up", method: :post, remote: true %>
+    <%= link_to "Vote Down", votes_path(vote: {vote_value: -1, votable_type: "Question", votable_id: question_item.id}), :class => "btn btn-xs btn-warning vote-down", method: :post, remote: true %><br>
+
+    <%= question_item.score %> Points <br>
   </div>
   <div class="media-body">
     <h5 class="media-heading"><%= question_item.title %></h5>
@@ -24,5 +28,4 @@
   </div>
 </div>
 <% end %>
-
-
+</div>

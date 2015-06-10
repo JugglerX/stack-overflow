@@ -1,35 +1,43 @@
-# User.create(
-#   first_name: "robert",
-#   last_name: "austin",
-#   email: "rob@jugglerdigital.com",
-#   username: "rob",
-#   password: "rob"
-# )
+rob = User.create(
+  username: "rob",
+  password: "rob"
+)
 
-# User.create(
-#   first_name: "sherif",
-#   last_name: "ambusudo",
-#   email: "sherif@jugglerdigital.com",
-#   username: "sherif",
-#   password: "sherif"
-# )
+tap = User.create(
+  username: "tap",
+  password: "tap"
+)
 
+# Gen questions for Rob
 5.times do
-  Question.create(
+  new_question = Question.create(
       title: Faker::Lorem.sentence,
-      content: Faker::Lorem.paragraph(3)
+      content: Faker::Lorem.paragraph(3),
+      user_id: rob.id
   )
-end
-
-# Generate Answers
-i = 0
-5.times do
-  i += 1
-  4.times do
+  5.times do
     Answer.create(
       title: Faker::Lorem.sentence,
       content: Faker::Lorem.paragraph(10),
-      question_id: i
+      question_id: new_question.id,
+      user_id: tap.id
+    )
+  end
+end
+
+# Gen questions for Tap
+5.times do
+  new_question = Question.create(
+      title: Faker::Lorem.sentence,
+      content: Faker::Lorem.paragraph(3),
+      user_id: tap.id
+  )
+  5.times do
+    Answer.create(
+      title: Faker::Lorem.sentence,
+      content: Faker::Lorem.paragraph(10),
+      question_id: new_question.id,
+      user_id: rob.id
     )
   end
 end
