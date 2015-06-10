@@ -3,24 +3,28 @@ class VotesController < ApplicationController
   def create
     @vote = Vote.new(vote_params)
     @vote.user_id = User.find_by(username: session[:username]).id
-
-    # @user = User.find_by(username: session[:username]).id
-    # @user.votes
-
-
     @vote.save
+
     if @vote.votable_type == "Question"
-      question = Question.find(@vote.votable_id)
-      question.score = Vote.where(votable_type: "Question", votable_id: question.id).sum(:vote_value)
-      question.save
-      redirect_to '/'
+      @question = Question.find(@vote.votable_id)
+      @question.score = Vote.where(votable_type: "Question", votable_id: @question.id).sum(:vote_value)
+      @question.save
+      respond_to do |format|
+        format.html { redirect_to '/' }
+        format.json { render json: @question}
+      end
     else
-      answer = Answer.find(@vote.votable_id)
-      answer.score = Vote.where(votable_type: "Answer", votable_id: answer.id).sum(:vote_value)
-      answer.save
-      @question = Question.find(answer.question_id)
-      redirect_to @question
+      @answer = Answer.find(@vote.votable_id)
+      @answer.score = Vote.where(votable_type: "Answer", votable_id: @answer.id).sum(:vote_value)
+      @answer.save
+      @question = Question.find(@answer.question_id)
+      respond_to do |format|
+        format.html { redirect_to '/' }
+        format.json { render json: @answer}
+      end
     end
+
+
 
   end
 

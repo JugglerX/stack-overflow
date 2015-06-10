@@ -1,17 +1,18 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :set_question, only: [:edit, :update, :destroy]
 
   # GET /questions
   # GET /questions.json
   def index
     @questions = Question.all.order(created_at: :desc)
-
   end
 
   # GET /questions/1
   # GET /questions/1.json
   def show
+    @question = Question.find(params[:id])
     @answers = @question.answers.all.order(score: :desc)
+    @questions = Question.all.order(created_at: :desc)
   end
 
   # GET /questions/new

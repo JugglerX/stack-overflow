@@ -1,3 +1,16 @@
+.top {
+  width: 100%;
+  padding: 8px 0 8px 0;
+  box-shadow: 1px 1px 4px #EAEAEA;
+  background: #333;
+  margin-bottom: 20px;
+  .top-inner {
+    width: 960px;
+    margin: 0 auto;
+  }
+}
+
+
 .header {
   width: 100%;
   padding: 8px 0 8px 0;
@@ -10,8 +23,9 @@
   }
 }
 
+
 .logo {
-  background-image: asset-url("logo.png", image);
+  background-image: asset-url("logo.png");
   height: 53px;
   width: 196px;
   display: block;

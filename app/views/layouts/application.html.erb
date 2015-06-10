@@ -16,10 +16,9 @@
     <![endif]-->
   </head>
   <body>
-    <%= render '/layouts/header' %>
+    <%= render '/layouts/top' %>
 
-    <!-- Logo -->
-    <div class="container">
+    <div id="header" class="container">
       <div class="row">
         <div class="col-md-12">
           <a href="/" class="logo"></a>
@@ -27,27 +26,9 @@
       </div>
     </div>
 
-    <!-- Question Header -->
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-        </div>
-      </div>
+    <div id="middle" class="container">
+        <%= yield %>
     </div>
-
-    <!-- Question -->
-    <div class="container">
-      <div class="row">
-        <div class="col-md-9">
-          <%= yield %>
-        </div>
-        <div class="col-md-3">
-          <h3> Sidebar</h3>
-        </div>
-      </div>
-    </div>
-
-
 
   </body>
 </html>

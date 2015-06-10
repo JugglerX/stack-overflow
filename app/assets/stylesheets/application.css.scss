@@ -12,9 +12,10 @@
 */
 
 @import "bootstrap-sprockets";
-@import "_bootstrap_custom";
-@import "_style";
-@import "_question";
-@import "_answer";
-@import "_header";
+@import "bootstrap_custom";
+@import "clearfix";
+@import "style";
+@import "post";
+@import "header";
+@import "vote";
 
